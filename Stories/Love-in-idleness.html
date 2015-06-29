@@ -1,0 +1,74 @@
+<tw-storydata name="Love-in-idleness" startnode="5" creator="Twine" creator-version="2.0.6" ifid="D3A36D0D-36C4-4B13-9F09-1B12386EB54D" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+</script><tw-passagedata pid="1" name="Communications" tags="" position="1350,600">(if: $rooms_visited is 0)[
+You sway unsteadily. Looking around, you see that you&#x27;re in Communications.
+That&#x27;s not good. This end of the ship is a dead end. You can reach a few rooms from Communications, but the only way back to the rest of the ship - and the armory and the escape pods - is the way you came. 
+And you have a feeling the monster in the hallway might have a thing or two to say about that.]
+(if: $rooms_visited is 1)[
+You&#x27;re back in Communications. The door locks behind you.
+The banging continues. The creature&#x27;s still out there. Can&#x27;t imagine why it&#x27;s so relentless. It already ate the rest of your crew, and it&#x27;s not much bigger than a human. Surely it can&#x27;t still be hungry ... 
+In any case, you don&#x27;t have much time. The door to the hall is holding, but not for long. Only enough time to visit each of the other rooms once, you estimate.]
+(if: $rooms_visited is 2)[
+You&#x27;re back in Communications. The door locks behind you.
+The door to the hallway is riddled with dents from the creature&#x27;s pounding claws. You can see the hinges straining. Just enough time to visit the last room.]
+	(if: $rooms_visited is 3)[
+The final door hisses shut behind you. The creature&#x27;s relentless pounding has bent the edges of the door back, and you can see its glowing eyes through the cracks. 
+You only have a few moments to [[prepare.|Prepare]]]
+
+[[Look around.|Investigate Communications]]
+(Display: &quot;Communications Room Selection&quot;)
+
+(Display: &quot;InventoryHandler&quot;)</tw-passagedata><tw-passagedata pid="2" name="Bunks" tags="" position="1300,300">(set: $rooms_visited to $rooms_visited + 1)
+[[Back to main|Communications]]</tw-passagedata><tw-passagedata pid="3" name="Kitchen" tags="" position="1450,300">(set: $rooms_visited to $rooms_visited + 1)
+[[Back to main|Communications]]
+
+(set: $have_dagger to true)</tw-passagedata><tw-passagedata pid="4" name="Farm" tags="" position="1600,300">(set: $rooms_visited to $rooms_visited + 1)
+[[You can head back to Communications.|Communications]] If you do, though, you won&#x27;t have time  to come back here. </tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="1250,1096.6666666666667">The stupid beast crashes against the heavy steel door, knocking you senseless and sending you hurtling to the cold metal floor. Okay, not entirely senseless, because you are aware enough to hear the beast scream with rage from behind the door. It occurs to you that could&#x27;ve never hoped to barricade it in time, but the creature&#x27;s body mass and momentum was enough to trap it on the other side. [[What a considerate space-monster it is!|Intro1]] 
+
+&lt;img src=&quot;http://i83.photobucket.com/albums/j316/liz_marcs/Reaction%20Gifs/X8Ufi_zps62cda975.gif&quot; alt=&quot;smiley&quot;/&gt;</tw-passagedata><tw-passagedata pid="6" name="Inventory" tags="" position="2050,850">(if: $have_dagger is false)[You have nothing in your inventory.](else:)[You are carrying a dagger.]</tw-passagedata><tw-passagedata pid="7" name="InventoryHandler" tags="" position="2050,700">(if: $view_inventory is false)[
+	(Link:&quot;Show inventory&quot;)[
+    	(set: $view_inventory to true)
+        (goto:&quot;Main Room&quot;)
+    ]
+](else:)[
+	(Link:&quot;Hide inventory&quot;)[
+    	(set: $view_inventory to false)
+        (goto:&quot;Main Room&quot;)
+    ]
+    (Display: &quot;Inventory&quot;)
+]</tw-passagedata><tw-passagedata pid="8" name="Intro2" tags="" position="1450,850">The thing begins hammering on the other side of the door. The metallic thuds reverberate through the empty, cold corridors of your ship and rattle around your dazed brain like a couple of bowling balls in a metal barrel. Judging by the dents forming in the door, you only have a few minutes before it breaks through. 
+
+You have to [[stand up.|Communications]]
+
+(set: $have_dagger to false)
+(set: $have_flower to false)
+(set: $have_skull to false)
+(set: $have_potion to false)
+(set: $have_handkerchief to false)
+(set: $have_garters to false)
+(set: $visited_north to false)
+(set: $visited_east to false)
+(set: $visited_west to false)
+(set: $rooms_visited to 0)
+
+(set: $view_inventory to false)</tw-passagedata><tw-passagedata pid="9" name="Intro1" tags="" position="1450,1000">Er, no. That&#x27;s not right. Not considerate. Terrifying space monster that&#x27;s trying to kill you. Already ate the rest of your crew. 
+
+You rub at the back of your head, where you already feel a large bump rising, and try to [[clear your head.|Intro2]] </tw-passagedata><tw-passagedata pid="10" name="Prepare" tags="" position="1000,550">[[Step away from the door.|Creature Enters]]</tw-passagedata><tw-passagedata pid="11" name="Creature Enters" tags="" position="850,550">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="12" name="Investigate Communications" tags="" position="1850,600">You see a large tank in the corner that&#x27;s supplying oxygen to the room. A pipe is running from it to a vent above the hallway door. There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot; 
+
+There&#x27;s an empty spacesuit lying on the floor. It would take too long to put on, and wouldn&#x27;t really offer much additional protection anyway. After all, it&#x27;s a space suit, not a monster suit. Although a monster suit would be pretty neat. The monster would get super confused before, you know, killing you. 
+
+There are several large holographic stations with chairs next to them. 
+
+And, of course, there&#x27;s the closed, dented door back to the hallway, which is rapidly getting more dented. 
+
+(Display: &quot;Communications Room Selection&quot;)
+
+(Display: &quot;Inventory Handler&quot;)</tw-passagedata><tw-passagedata pid="13" name="Communications Room Selection" tags="" position="1850,450">(if: $rooms_visited is not 3)[
+[[Bunks|Bunks]]
+[[Kitchen|Kitchen]]
+[[Farm|Farm]]
+]
+
+(Display: &quot;Inventory Handler&quot;)</tw-passagedata></tw-storydata>
