@@ -2,65 +2,111 @@
 
 .inventory {
    display: none;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$( ".inventoryButton" ).click(function() {
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">$( ".inventoryButton" ).click(function() {
   $( ".inventory, .openButton" ).toggle( function() {
   });
-});</script><tw-passagedata pid="1" name="Communications" tags="" position="1350,600">(if: $rooms_visited is 0)[
-You sway unsteadily. Looking around, you see that you&#x27;re in Communications.
-That&#x27;s not good. This end of the ship is a dead end. You can reach a few rooms from Communications, but the only way back to the rest of the ship - and the armory and the escape pods - is the way you came. 
-And you have a feeling the monster in the hallway might have a thing or two to say about that.]
-(if: $rooms_visited is 1)[
-You&#x27;re back in Communications. The door locks behind you.
-The banging continues. The creature&#x27;s still out there. Can&#x27;t imagine why it&#x27;s so relentless. It already ate the rest of your crew, and it&#x27;s not much bigger than a human. Surely it can&#x27;t still be hungry ... 
-In any case, you don&#x27;t have much time. The door to the hall is holding, but not for long. Only enough time to visit each of the other rooms once, you estimate.]
-(if: $rooms_visited is 2)[
-You&#x27;re back in Communications. The door locks behind you.
-The door to the hallway is riddled with dents from the creature&#x27;s pounding claws. You can see the hinges straining. Just enough time to visit the last room.]
-	(if: $rooms_visited is 3)[
-The final door hisses shut behind you. The creature&#x27;s relentless pounding has bent the edges of the door back, and you can see its glowing eyes through the cracks. 
-You only have a few moments to [[prepare.|Prepare]]]
+});
+</script><tw-passagedata pid="1" name="Communications" tags="" position="1500,600">(if: $rooms_visited is 0)[You sway unsteadily. Looking around, you see that you&#x27;re in Communications.
 
-[[Look around.|Investigate Communications]]
+That&#x27;s not good. This end of the ship is a dead end. You can reach a few rooms from Communications, but the only way back to the rest of the ship - and the armory and the bridge and the escape pods - is the way you came. 
+
+And you have a feeling the monster in the hallway might have a thing or two to say about that.]
+(if: $rooms_visited is 1)[You&#x27;re back in Communications. The door locks behind you.
+
+The banging continues. The creature&#x27;s still out there. Can&#x27;t imagine why it&#x27;s so relentless. It already ate the rest of your crew, and it&#x27;s not much bigger than a human. Surely it can&#x27;t still be hungry ... 
+
+In any case, you don&#x27;t have much time. The door to the hall is holding, but not for long. Only enough time to visit each of the other rooms once, you estimate.
+]
+(if: $rooms_visited is 2)[You&#x27;re back in Communications. The door locks behind you.
+
+The door to the hallway is riddled with dents from the creature&#x27;s pounding claws. You can see the hinges straining. Just enough time to visit the last room.
+](if: $rooms_visited is 3)[The final door hisses shut behind you. The creature&#x27;s relentless pounding has bent the edges of the door back, and you can see its glowing eyes through the cracks. 
+
+You only have a few moments to [[prepare.|Prepare]]](if: $rooms_visited is not 3)[[[Look around.|Investigate Communications]]]
 (Display: &quot;Communications Room Selection&quot;)
 
-(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="2" name="Bunks" tags="" position="1325,301.6666666666667">(set: $rooms_visited to $rooms_visited + 1)
-[[Back to main|Communications]]</tw-passagedata><tw-passagedata pid="3" name="Kitchen" tags="" position="1450,300">(set: $rooms_visited to $rooms_visited + 1)
-[[Back to main|Communications]]
+(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="2" name="Bunks" tags="" position="1350,300">(set: $rooms_visited to $rooms_visited + 1)
+(set: $visited_bunks to true)
 
-(set: $have_dagger to true)</tw-passagedata><tw-passagedata pid="4" name="Farm" tags="" position="1575,298.33333333333337">(set: $rooms_visited to $rooms_visited + 1)
-[[You can head back to Communications.|Communications]] If you do, though, you won&#x27;t have time  to come back here. </tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="1245,1123.3333333333335">The stupid beast crashes against the heavy steel door, knocking you senseless and sending you hurtling to the cold metal floor. Okay, not entirely senseless, because you are aware enough to hear the beast scream with rage from behind the door. It occurs to you that could&#x27;ve never hoped to barricade it in time, but the creature&#x27;s body mass and momentum was enough to trap it on the other side. [[What a considerate space-monster it is!|Intro1]] 
+(if: $have_handkerchief is false)[Pick up (link:&quot;handkerchief.&quot;)[(set: $have_handkerchief to true)(goto:&quot;Bunks&quot;])]
+(if: $have_potion is false)[Pick up (link:&quot;potion.&quot;)[(set: $have_potion to true)(goto:&quot;Bunks&quot;])]
+(if: $have_potion is false)[Pick up (link:&quot;potion.&quot;)[(set: $have_potion to true)(goto:&quot;Bunks&quot;])]
+(if: $have_garters is false)[Pick up (link:&quot;garters.&quot;)[(set: $have_garters to true)(goto:&quot;Bunks&quot;])]
+
+[[You can also head back to Communications.|Communications]] You won&#x27;t have time to come back here. </tw-passagedata><tw-passagedata pid="3" name="Kitchen" tags="" position="1500,300">(set: $rooms_visited to $rooms_visited + 1)
+(set: $visited_kitchen to true)
+
+(if: $have_dagger is false)[Pick up (link:&quot;dagger.&quot;)[(set: $have_dagger to true)(goto:&quot;Kitchen&quot;])]
+(if: $have_skull is false)[Pick up (link:&quot;skull.&quot;)[(set: $have_skull to true)(goto:&quot;Kitchen&quot;])]
+
+[[You can also head back to Communications.|Communications]] You won&#x27;t have time to come back here. </tw-passagedata><tw-passagedata pid="4" name="Farm" tags="" position="1650,300">The algae farm doesn&#x27;t just contain algae, but there&#x27;s certainly quite a lot of it. It provides the bulk of your sustenance and oxygen for the voyage. 
+
+In addition to the tanks upon tanks of that oh-so-flavorless nutritional goop, there&#x27;s also the garden. 
+
+It&#x27;s part of The Globe&#x27;s preservation mission. Hundreds of species of plants and flowers from Old Earth, all growing serenly and tying up an absurd amount of the ship&#x27;s recycled water supply at any given time.
+
+Oh, yes. These plants are also not to be picked or harvested //under any circumstances//. 
+
+[[Take a look at the planters and pick some stuff.|Harvest]]
+[[You can also head back to Communications.|Communications]] If you do, though, you won&#x27;t have time  to come back here. 
+
+(set: $rooms_visited to $rooms_visited + 1)
+(set: $visited_farm to true)</tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="1900,900">The stupid beast crashes against the heavy steel door, knocking you senseless and sending you hurtling to the cold metal floor. Okay, not entirely senseless, because you are aware enough to hear the beast scream with rage from behind the door. It occurs to you that could&#x27;ve never hoped to barricade it in time, but the creature&#x27;s body mass and momentum was enough to trap it on the other side. [[What a considerate space-monster it is!|Intro1]] 
 
 &lt;!--
 &lt;img src=&quot;&quot; alt=&quot;smiley&quot;/&gt;
---&gt;</tw-passagedata><tw-passagedata pid="6" name="Inventory" tags="" position="2050,850">(if: $have_dagger is false)[You have nothing in your inventory.](else:)[You are carrying a dagger.]</tw-passagedata><tw-passagedata pid="7" name="InventoryHandler" tags="" position="2050,700">(if: $view_inventory is false)[
-	(Link:&quot;Show inventory&quot;)[
-    	(set: $view_inventory to true)
-        (goto:&quot;Communications&quot;)
+--&gt;</tw-passagedata><tw-passagedata pid="6" name="Inventory" tags="" position="1650,750">//Inventory:
+{(if: $have_dagger is false)[
+	(if: $flowers_held is 0)[
+    	(if: $have_skull is false)[
+        	(if: $have_potion is false)[
+        		(if: $have_handkerchief is false)[
+                	(if: $have_garters is false)[
+        				empty
+       				 ]
+       			 ]
+        	]
+        ]
     ]
-](else:)[
-	(Link:&quot;Hide inventory&quot;)[
-    	(set: $view_inventory to false)
-        (goto:&quot;Communications&quot;)
-    ]
-    (Display: &quot;Inventory&quot;)
-]</tw-passagedata><tw-passagedata pid="8" name="Intro2" tags="" position="1450,850">The thing begins hammering on the other side of the door. The metallic thuds reverberate through the empty, cold corridors of your ship and rattle around your dazed brain like a couple of bowling balls in a metal barrel. Judging by the dents forming in the door, you only have a few minutes before it breaks through. 
+]}
+{(if: $have_dagger is true)[Dagger]}
+{(if: $have_skull is true)[A skull]}
+{(if: $have_potion is true)[A sleeping potion]}
+{(if: $have_handkerchief is true)[An embroidered handkerchief]}
+{(if: $have_garters is true)[A pair of yellow stockings with garters]}
+(if: $flowers_held is not 0)[(Display: &quot;FlowersHeld&quot;)]
+
+//
+</tw-passagedata><tw-passagedata pid="7" name="Intro2" tags="" position="1500,750">The thing begins hammering on the other side of the door. The metallic thuds reverberate through the empty, cold corridors of your ship and rattle around your dazed brain like a couple of bowling balls in a metal barrel. Judging by the dents forming in the door, you only have a few minutes before it breaks through. 
 
 You have to [[stand up.|Communications]]
 
 (set: $have_dagger to false)
-(set: $have_flower to false)
+(set: $flowers_held to 0)
+(set: $have_rosemary to false)
+(set: $have_pansy to false)
+(set: $have_fennel to false)
+(set: $have_columbine to false)
+(set: $have_rue to false)
+(set: $have_daisy to false)
+(set: $have_loveinidleness to false)
 (set: $have_skull to false)
 (set: $have_potion to false)
 (set: $have_handkerchief to false)
 (set: $have_garters to false)
-(set: $visited_north to false)
-(set: $visited_east to false)
-(set: $visited_west to false)
+(set: $visited_kitchen to false)
+(set: $visited_bunks to false)
+(set: $visited_farm to false)
 (set: $rooms_visited to 0)
+(set: $skull_attempts to 0)
+(set: $preparing to false)
 
-(set: $view_inventory to false)</tw-passagedata><tw-passagedata pid="9" name="Intro1" tags="" position="1450,1000">Er, no. That&#x27;s not right. Not considerate. Terrifying space monster that&#x27;s trying to kill you. Already ate the rest of your crew. 
+(set: $view_inventory to false)</tw-passagedata><tw-passagedata pid="8" name="Intro1" tags="" position="1500,900">Er, no. That&#x27;s not right. Not considerate. Terrifying space monster that&#x27;s trying to kill you. Already ate the rest of your crew. 
 
-You rub at the back of your head, where you already feel a large bump rising, and try to [[clear your head.|Intro2]] </tw-passagedata><tw-passagedata pid="10" name="Prepare" tags="" position="1000,550">[[Step away from the door.|Creature Enters]]</tw-passagedata><tw-passagedata pid="11" name="Creature Enters" tags="" position="850,550">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="12" name="Investigate Communications" tags="" position="1850,600">You see a large tank in the corner that&#x27;s supplying oxygen to the room. A pipe is running from it to a vent above the hallway door. There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot; 
+You rub at the back of your head, where you already feel a large bump rising, and try to [[clear your head.|Intro2]] </tw-passagedata><tw-passagedata pid="9" name="Prepare" tags="" position="1250,500">[[Step away from the door.|Creature Enters]]
+
+(set: $preparing to true)</tw-passagedata><tw-passagedata pid="10" name="Creature Enters" tags="" position="1250,50">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="11" name="Investigate Communications" tags="" position="1350,900">You see a large tank in the corner that&#x27;s supplying oxygen to the room. A pipe is running from it to a vent above the hallway door. [[There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot;|Panel]] 
 
 There&#x27;s an empty spacesuit lying on the floor. It would take too long to put on, and wouldn&#x27;t really offer much additional protection anyway. After all, it&#x27;s a space suit, not a monster suit. Although a monster suit would be pretty neat. The monster would get super confused before, you know, killing you. 
 
@@ -69,12 +115,10 @@ There are several large holographic stations with chairs next to them.
 And, of course, there&#x27;s the currently door back to the hallway, which is rapidly getting more dented and less closed. There&#x27;s a small screen next to the door - [[a digital peephole to the other side.|Peephole]]
 
 (Display: &quot;Communications Room Selection&quot;)
-
-(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="13" name="Communications Room Selection" tags="" position="1851.6666666666667,450">(if: $rooms_visited is not 3)[
-[[Bunks|Bunks]]
-[[Kitchen|Kitchen]]
-[[Farm|Farm]]
-]</tw-passagedata><tw-passagedata pid="14" name="Peephole" tags="" position="1850,750">You flip the screen on and a pale, glowing image swims into view. 
+(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="12" name="Communications Room Selection" tags="" position="1650,600">(if: $rooms_visited is not 3)[(if: $visited_bunks is false)[[[    
+Bunks|Bunks]]](if: $visited_kitchen is false)[[[    
+Kitchen|Kitchen]]](if: $visited_farm is false)[[[    
+Farm|Farm]]]]</tw-passagedata><tw-passagedata pid="13" name="Peephole" tags="" position="1350,700">You flip the screen on and a pale, glowing image swims into view. 
 
 There&#x27;s the creature, still hammering away diligently. What did McLaughlin say it was called again? Mallomar? Callibar? Caliban? Yeah, caliban is what she called it. Lot of good it does to know.
 
@@ -84,4 +128,59 @@ A solar storm can do a lot of things: fry you with radiation, knock out your shi
 
 There&#x27;s one thing solar flares //don&#x27;t// do, though: they don&#x27;t tear your face off and eat you. Considering the state of the rest of the crew, maybe you should&#x27;ve taken your chances with the solar storm.
 
-[[Look away from the terrifying monster.|Investigate Communications]]</tw-passagedata></tw-storydata>
+[[Look away from the terrifying monster.|Investigate Communications]]</tw-passagedata><tw-passagedata pid="14" name="Harvest" tags="" position="1650,450">There&#x27;s a bunch of boring plants - vines and stuff, mostly. Nothing you can really use as a weapon or anything. 
+
+You stop in front of the flower planters. There are many types of flowers and herbs here, each more useless than the last. The planter is labeled with cryptic descriptions of each. 
+(if: $have_rosemary is false)[
+Rosemary: for rememberance ((link:&quot;Pick?&quot;)[(set: $have_rosemary to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_pansy is false)[
+Pansy: for thought ((link:&quot;Pick?&quot;)[(set: $have_pansy to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_fennel is false)[
+Fennel: for praiseworthiness ((link:&quot;Pick?&quot;)[(set: $have_fennel to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_columbine is false)[
+Columbine: for folly ((link:&quot;Pick?&quot;)[(set: $have_columbine to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_rue is false)[
+Rue: for regret ((link:&quot;Pick?&quot;)[(set: $have_rue to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_daisy is false)[
+Daisy: for innocence ((link:&quot;Pick?&quot;)[(set: $have_daisy to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])](if: $have_loveinidleness is false)[
+Love-in-idleness: for love ((link:&quot;Pick?&quot;)[(set: $have_loveinidleness to true)(set: $flowers_held to $flowers_held + 1)(goto:&quot;Harvest&quot;)])]
+(if: $flowers_held is 7)[//You picked all the flowers. Who knows, you might need every last one of them. Maybe the monster will stop if you give it a BOUQUET.//
+]
+[[Ready to head back to Communications?|Communications]] Remember, you can&#x27;t come back here once you leave.
+
+(Display:&quot;FlowersHeld&quot;)</tw-passagedata><tw-passagedata pid="15" name="FlowersHeld" tags="" position="1800,300">(if: $flowers_held is not 1 and $flowers_held is not 0)Flowers held:(if: $have_rosemary is true)[
+    rosemary (for rememberance)](if: $have_pansy is true)[
+    pansy (for thought)](if: $have_fennel is true)[
+    fennel (for praiseworthiness)](if: $have_columbine is true)[
+    columbine (for folly)](if: $have_rue is true)[
+    rue (for regret)](if: $have_daisy is true)[
+    daisy (for innocence)](if: $have_loveinidleness is true)[
+    love-in-idleness (for love)]</tw-passagedata><tw-passagedata pid="16" name="Panel" tags="" position="750,450">(if: $have_dagger is true)[You can [[use the dagger|PryOffPanel]] to pry off the panel.](else:)[The panel doesn&#x27;t have a handle or anything. You&#x27;d need something sharp to open it.]
+
+[[Keep looking around.|Investigate Communications]]</tw-passagedata><tw-passagedata pid="17" name="PryOffPanel" tags="" position="850,300">The panel pops off. There&#x27;s a small slot labled &quot;02 feed input.&quot; There&#x27;s a button next to it labeled &quot;Incorporate into 02 feed.&quot;
+
+It looks like you could fit something small into the slot. 
+ 
+(if: $have_skull is true and $skull_attempts &lt; 4)[[[Put the skull into the slot.|SkullInSlot]]]
+(if: $have_handkerchief is true)[[[Put the handkerchief in the slot.|HanderkerchiefInSlot]]]
+(if: $have_garters is true)[[[Put the garters in the slot.|GartersInSlot]]]
+(if: $flowers_held is not 0)[[[Put some flowers in the slot|FlowersInSlot]]]
+(if: $have_potion is true)[[[Pour the potion into the slot.|PotionInSlot]]]
+
+(if: $preparing is false)[[[Keep looking around.|Investigate Communications]]](if: $preparing is true)[[[You can practically smell the thing&#x27;s breath. Anything else?|Prepare]]]</tw-passagedata><tw-passagedata pid="18" name="SkullInSlot" tags="" position="1050,150">(if: $skull_attempts is 0)[You press the //large// hunk of bone against the //small// input slot. It bangs against the metal noisily, but definitely doesn&#x27;t fit in.
+
+Seriously, the slot is like as big as your finger.](if: $skull_attempts is 1)[You try to shove the skull into the slot jaw first. The jaw is kinda pointy, after all. Maybe it can act like a wedge!
+
+No, it does not act like a wedge. It doesn&#x27;t work.](if: $skull_attempts is 2)[You scrape the skull against the edge of the slot, thinking that perhaps some of the bone dust will go into it. Alas, the edges of the slot are smoothe and rounded, and not so much as a sprinking of powdered skull falls in.](if: $skull_attempts is 3)[You decide that the skull is too big to go into the slot, so you put it on the ground and STOMP on it, repeatedly. So as to break it into smaller pieces, of course.
+
+You succeed! In hurting your ankle, that is. The skull is still very much intact.](if: $skull_attempts &gt; 3)[You pound the skull fruitlessly against the rim of the tiny input slot for a few more moments.]
+
+(link:&quot;Keep trying.&quot;)[(set: $skull_attempts to $skull_attempts + 1)(goto:&quot;SkullInSlot&quot;)]
+[[Try something else.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="19" name="HanderkerchiefInSlot" tags="" position="1000,0">You wad the handkerchief into a little ball and stuff it into the slot. 
+
+There. Now it&#x27;s blocking the input slot. That&#x27;ll stop the monster that&#x27;s trying to eat you from, uh, tampering with the oxygen feed, I guess. 
+
+Er, no ... that doesn&#x27;t make any //sense//. [[Take the handkerchief back.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="20" name="GartersInSlot" tags="" position="850,100">The garters are a fairly large garment, meant to go on your body, and the slot is a finger-width port designed for small tanks, items, or liquids. This is going to work great! 
+
+You try wadding them up, and they&#x27;re still the size of a fist.
+
+You try threading the garters into the slot from the toe, but they keep getting stuck on the inside of the slot and your hands are shaking because //there&#x27;s a huge monster furiously pounding on a door just a few meters away//. 
+
+You&#x27;re not sure what you hoped to accomplish by putting the garters into the 02 input port, but you did not accomplish it.
+
+[[Try something else.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="21" name="FlowersInSlot" tags="" position="700,0">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="22" name="PotionInSlot" tags="" position="650,150">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
