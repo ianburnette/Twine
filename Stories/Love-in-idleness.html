@@ -3,44 +3,62 @@
 .inventory {
    display: none;
 }
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">$( ".inventoryButton" ).click(function() {
   $( ".inventory, .openButton" ).toggle( function() {
   });
 });
-</script><tw-passagedata pid="1" name="Communications" tags="" position="1500,600">(if: $rooms_visited is 0)[You sway unsteadily. Looking around, you see that you&#x27;re in Communications.
+
+
+</script><tw-passagedata pid="1" name="Communications" tags="" position="400,650">(if: $rooms_visited is 0)[You sway unsteadily. Looking around, you see that you&#x27;re in Communications.
 
 That&#x27;s not good. This end of the ship is a dead end. You can reach a few rooms from Communications, but the only way back to the rest of the ship - and the armory and the bridge and the escape pods - is the way you came. 
 
-And you have a feeling the monster in the hallway might have a thing or two to say about that.]
+And you have a feeling the monster in the hallway might have a thing or two to say about that.
+
+You have a few moments to explore and gather materials before you have to start preparing for the creature to enter.]
 (if: $rooms_visited is 1)[You&#x27;re back in Communications. The door locks behind you.
 
 The banging continues. The creature&#x27;s still out there. Can&#x27;t imagine why it&#x27;s so relentless. It already ate the rest of your crew, and it&#x27;s not much bigger than a human. Surely it can&#x27;t still be hungry ... 
 
-In any case, you don&#x27;t have much time. The door to the hall is holding, but not for long. Only enough time to visit each of the other rooms once, you estimate.
+In any case, you don&#x27;t have much time. The door to the hall is holding, but not for long. Only enough time to visit each of the other rooms once, you estimate, before you have to start getting ready.
 ]
 (if: $rooms_visited is 2)[You&#x27;re back in Communications. The door locks behind you.
 
-The door to the hallway is riddled with dents from the creature&#x27;s pounding claws. You can see the hinges straining. Just enough time to visit the last room.
+The door to the hallway is riddled with dents from the creature&#x27;s pounding claws. You can see the hinges straining. Just enough time to visit the last room before you have to start preparing for the creature to enter.
 ](if: $rooms_visited is 3)[The final door hisses shut behind you. The creature&#x27;s relentless pounding has bent the edges of the door back, and you can see its glowing eyes through the cracks. 
 
 You only have a few moments to [[prepare.|Prepare]]](if: $rooms_visited is not 3)[[[Look around.|Investigate Communications]]]
 (Display: &quot;Communications Room Selection&quot;)
 
-(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="2" name="Bunks" tags="" position="1350,300">(set: $rooms_visited to $rooms_visited + 1)
-(set: $visited_bunks to true)
+(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="2" name="Bunks" tags="" position="400,1100">The bunkroom is long and dark. Most of the lights seem to have gone out. You can only really see the first few beds. 
 
-(if: $have_handkerchief is false)[Pick up (link:&quot;handkerchief.&quot;)[(set: $have_handkerchief to true)(goto:&quot;Bunks&quot;])]
-(if: $have_potion is false)[Pick up (link:&quot;potion.&quot;)[(set: $have_potion to true)(goto:&quot;Bunks&quot;])]
-(if: $have_potion is false)[Pick up (link:&quot;potion.&quot;)[(set: $have_potion to true)(goto:&quot;Bunks&quot;])]
-(if: $have_garters is false)[Pick up (link:&quot;garters.&quot;)[(set: $have_garters to true)(goto:&quot;Bunks&quot;])]
+(if: $have_garters is false)[There&#x27;s a [[chest at the foot of the nearest bed.|Examine Garters]] You have one just like it at the foot of your bed, way down at the other side of the room. You use yours to store clothes, which is likely what&#x27;s in this one.](if:$have_garters is true)[//You tooks some yellow stockings and garters from the chest at the foot of the bed.//]
 
-[[You can also head back to Communications.|Communications]] You won&#x27;t have time to come back here. </tw-passagedata><tw-passagedata pid="3" name="Kitchen" tags="" position="1500,300">(set: $rooms_visited to $rooms_visited + 1)
+(if: $have_handkerchief is false)[You notice a [[white handkerchief|Examine Handkerchief]] lying on the bed. It&#x27;s splattered with blood.](if: $have_handkerchief is true)[//You took someone&#x27;s handkerchief from the bed.//]
+
+(if: $have_potion is false)[You remember that there&#x27;s [[a first aid cabinet|Examine Potion]] on the wall. You&#x27;re not injured, but it might be nice to grab some adhesive bandages for when your legs get ripped off.](if: $have_potion is true)[//You took the vial of fentanyl from the first aid cabinet.//]
+
+There won&#x27;t be time to come back here if you [[return to Communications.|Communications]]
+
+(set: $visited_bunks to true)</tw-passagedata><tw-passagedata pid="3" name="Kitchen" tags="" position="550,1100">The kitchen is a grisly sight. This was the creature&#x27;s first stop, before it went wandering and found you and the rest of the crew on the bridge. 
+
+The ship&#x27;s cook, Yorick, was the first casualty. His skeleton is stipped bare, lying on the floor in front of a prep counter. (if: $have_skull is false)[[[His skull|Examine Skull]] has detached from the spine and rolled a few feet away.](if: $have_skull is true)[//You took his skull for some reason.//]
+(if: $have_dagger is false)[
+There&#x27;s a [[blade of some sort|Examine Dagger]] stuck in the surface of the prep counter.
+](if: $have_dagger is true)[
+//There&#x27;s a hole in the countertop from where you took the paring knife.//
+]
+Otherwise, the kitchen is unremarkable. There&#x27;s various cookware around, but a well-wielded frying pan is not going to stop the monster that barely blinked when hit with a half-dozen rounds from Savoy&#x27;s high-powered revolver. 
+
+There are no secret exits, no dumbwaiters, not even any floor-level cabinets with reflective surfaces that you could use to trick the monster into slamming its head into.
+
+[[If you head back to Communications, you won&#x27;t have time to come back here.|Communications]]
+
+(set: $rooms_visited to $rooms_visited + 1)
 (set: $visited_kitchen to true)
-
-(if: $have_dagger is false)[Pick up (link:&quot;dagger.&quot;)[(set: $have_dagger to true)(goto:&quot;Kitchen&quot;])]
-(if: $have_skull is false)[Pick up (link:&quot;skull.&quot;)[(set: $have_skull to true)(goto:&quot;Kitchen&quot;])]
-
-[[You can also head back to Communications.|Communications]] You won&#x27;t have time to come back here. </tw-passagedata><tw-passagedata pid="4" name="Farm" tags="" position="1650,300">The algae farm doesn&#x27;t just contain algae, but there&#x27;s certainly quite a lot of it. It provides the bulk of your sustenance and oxygen for the voyage. 
+</tw-passagedata><tw-passagedata pid="4" name="Farm" tags="" position="700,1100">The algae farm doesn&#x27;t just contain algae, but there&#x27;s certainly quite a lot of it. It provides the bulk of your sustenance and oxygen for the voyage. 
 
 In addition to the tanks upon tanks of that oh-so-flavorless nutritional goop, there&#x27;s also the garden. 
 
@@ -52,11 +70,15 @@ Oh, yes. These plants are also not to be picked or harvested //under any circums
 [[You can also head back to Communications.|Communications]] If you do, though, you won&#x27;t have time  to come back here. 
 
 (set: $rooms_visited to $rooms_visited + 1)
-(set: $visited_farm to true)</tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="1900,900">The stupid beast crashes against the heavy steel door, knocking you senseless and sending you hurtling to the cold metal floor. Okay, not entirely senseless, because you are aware enough to hear the beast scream with rage from behind the door. It occurs to you that could&#x27;ve never hoped to barricade it in time, but the creature&#x27;s body mass and momentum was enough to trap it on the other side. [[What a considerate space-monster it is!|Intro1]] 
+(set: $visited_farm to true)</tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="0,0">The stupid beast crashes against the heavy steel door, knocking you senseless and sending you hurtling to the cold metal floor. 
+
+Okay, not entirely senseless, because you are aware enough to hear the beast scream with rage from behind the door. It occurs to you that could&#x27;ve never hoped to barricade it in time, but the creature&#x27;s body mass and momentum was enough to trap it on the other side. 
+
+[[What a considerate space-monster it is!|Intro1]] 
 
 &lt;!--
 &lt;img src=&quot;&quot; alt=&quot;smiley&quot;/&gt;
---&gt;</tw-passagedata><tw-passagedata pid="6" name="Inventory" tags="" position="1650,750">//Inventory:
+--&gt;</tw-passagedata><tw-passagedata pid="6" name="Inventory" tags="" position="100.0001,500">//Inventory:
 {(if: $have_dagger is false)[
 	(if: $flowers_held is 0)[
     	(if: $have_skull is false)[
@@ -78,7 +100,7 @@ Oh, yes. These plants are also not to be picked or harvested //under any circums
 (if: $flowers_held is not 0)[(Display: &quot;FlowersHeld&quot;)]
 
 //
-</tw-passagedata><tw-passagedata pid="7" name="Intro2" tags="" position="1500,750">The thing begins hammering on the other side of the door. The metallic thuds reverberate through the empty, cold corridors of your ship and rattle around your dazed brain like a couple of bowling balls in a metal barrel. Judging by the dents forming in the door, you only have a few minutes before it breaks through. 
+</tw-passagedata><tw-passagedata pid="7" name="Intro2" tags="" position="300,0">You sit up as the thing begins hammering on the other side of the door. The metallic thuds reverberate through the empty, cold corridors of your ship and rattle around your dazed brain like a couple of bowling balls in a metal barrel. Judging by the dents forming in the door, you only have a few minutes before it breaks through. 
 
 You have to [[stand up.|Communications]]
 
@@ -102,11 +124,13 @@ You have to [[stand up.|Communications]]
 (set: $skull_attempts to 0)
 (set: $preparing to false)
 
-(set: $view_inventory to false)</tw-passagedata><tw-passagedata pid="8" name="Intro1" tags="" position="1500,900">Er, no. That&#x27;s not right. Not considerate. Terrifying space monster that&#x27;s trying to kill you. Already ate the rest of your crew. 
+(set: $view_inventory to false)</tw-passagedata><tw-passagedata pid="8" name="Intro1" tags="" position="150,0">Er, no. That&#x27;s not right. Not considerate. Terrifying space monster that&#x27;s trying to kill you. Already ate the rest of your crew. 
 
-You rub at the back of your head, where you already feel a large bump rising, and try to [[clear your head.|Intro2]] </tw-passagedata><tw-passagedata pid="9" name="Prepare" tags="" position="1250,500">[[Step away from the door.|Creature Enters]]
+You rub at the back of your head, where you already feel a large bump rising, and try to [[clear your head.|Intro2]] </tw-passagedata><tw-passagedata pid="9" name="Prepare" tags="" position="1850,600">[[There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot;|Panel]] 
 
-(set: $preparing to true)</tw-passagedata><tw-passagedata pid="10" name="Creature Enters" tags="" position="1250,50">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="11" name="Investigate Communications" tags="" position="1350,900">You see a large tank in the corner that&#x27;s supplying oxygen to the room. A pipe is running from it to a vent above the hallway door. [[There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot;|Panel]] 
+[[Step away from the door.|Creature Enters]]
+
+(set: $preparing to true)</tw-passagedata><tw-passagedata pid="10" name="Creature Enters" tags="" position="2250,650">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="11" name="Investigate Communications" tags="" position="1350,850">You see a large tank in the corner that&#x27;s supplying oxygen to the room. A pipe is running from it to a vent above the hallway door. There&#x27;s a small panel on the tank labeled &quot;Emergency Input.&quot;
 
 There&#x27;s an empty spacesuit lying on the floor. It would take too long to put on, and wouldn&#x27;t really offer much additional protection anyway. After all, it&#x27;s a space suit, not a monster suit. Although a monster suit would be pretty neat. The monster would get super confused before, you know, killing you. 
 
@@ -115,10 +139,12 @@ There are several large holographic stations with chairs next to them.
 And, of course, there&#x27;s the currently door back to the hallway, which is rapidly getting more dented and less closed. There&#x27;s a small screen next to the door - [[a digital peephole to the other side.|Peephole]]
 
 (Display: &quot;Communications Room Selection&quot;)
-(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="12" name="Communications Room Selection" tags="" position="1650,600">(if: $rooms_visited is not 3)[(if: $visited_bunks is false)[[[    
-Bunks|Bunks]]](if: $visited_kitchen is false)[[[    
-Kitchen|Kitchen]]](if: $visited_farm is false)[[[    
-Farm|Farm]]]]</tw-passagedata><tw-passagedata pid="13" name="Peephole" tags="" position="1350,700">You flip the screen on and a pale, glowing image swims into view. 
+(Display: &quot;Inventory&quot;)</tw-passagedata><tw-passagedata pid="12" name="Communications Room Selection" tags="" position="100,650">(if: $rooms_visited is not 3)[
+(if: $visited_bunks is false)[(link:&quot;Bunks&quot;)[(set: $rooms_visited to $rooms_visited + 1)(goto:&quot;Bunks&quot;)]](if: $visited_bunks is true)[The door to the bunkroom is locked.]
+(if: $visited_kitchen is false)[(link:&quot;Kitchen&quot;)[(set: $rooms_visited to $rooms_visited + 1)(goto:&quot;Kitchen&quot;)]](if: $visited_kitchen is true)[The door to the kitchen is locked.]
+(if: $visited_farm is false)[(link:&quot;Farm&quot;)[(set: $rooms_visited to $rooms_visited + 1)(goto:&quot;Farm&quot;)]](if: $visited_farm is true)[The door to the farm is locked.]]
+
+(set: $rooms_visited to $rooms_visited + 1)</tw-passagedata><tw-passagedata pid="13" name="Peephole" tags="" position="1100,1000">You flip the screen on and a pale, glowing image swims into view. 
 
 There&#x27;s the creature, still hammering away diligently. What did McLaughlin say it was called again? Mallomar? Callibar? Caliban? Yeah, caliban is what she called it. Lot of good it does to know.
 
@@ -128,7 +154,7 @@ A solar storm can do a lot of things: fry you with radiation, knock out your shi
 
 There&#x27;s one thing solar flares //don&#x27;t// do, though: they don&#x27;t tear your face off and eat you. Considering the state of the rest of the crew, maybe you should&#x27;ve taken your chances with the solar storm.
 
-[[Look away from the terrifying monster.|Investigate Communications]]</tw-passagedata><tw-passagedata pid="14" name="Harvest" tags="" position="1650,450">There&#x27;s a bunch of boring plants - vines and stuff, mostly. Nothing you can really use as a weapon or anything. 
+[[Look away from the terrifying monster.|Investigate Communications]]</tw-passagedata><tw-passagedata pid="14" name="Harvest" tags="" position="750,950">There&#x27;s a bunch of boring plants - vines and stuff, mostly. Nothing you can really use as a weapon or anything. 
 
 You stop in front of the flower planters. There are many types of flowers and herbs here, each more useless than the last. The planter is labeled with cryptic descriptions of each. 
 (if: $have_rosemary is false)[
@@ -143,16 +169,16 @@ Love-in-idleness: for love ((link:&quot;Pick?&quot;)[(set: $have_loveinidleness 
 ]
 [[Ready to head back to Communications?|Communications]] Remember, you can&#x27;t come back here once you leave.
 
-(Display:&quot;FlowersHeld&quot;)</tw-passagedata><tw-passagedata pid="15" name="FlowersHeld" tags="" position="1800,300">(if: $flowers_held is not 1 and $flowers_held is not 0)Flowers held:(if: $have_rosemary is true)[
+(Display:&quot;FlowersHeld&quot;)</tw-passagedata><tw-passagedata pid="15" name="FlowersHeld" tags="" position="850,1100">(if: $flowers_held is not 1 and $flowers_held is not 0)Flowers held:(if: $have_rosemary is true)[
     rosemary (for rememberance)](if: $have_pansy is true)[
     pansy (for thought)](if: $have_fennel is true)[
     fennel (for praiseworthiness)](if: $have_columbine is true)[
     columbine (for folly)](if: $have_rue is true)[
     rue (for regret)](if: $have_daisy is true)[
     daisy (for innocence)](if: $have_loveinidleness is true)[
-    love-in-idleness (for love)]</tw-passagedata><tw-passagedata pid="16" name="Panel" tags="" position="750,450">(if: $have_dagger is true)[You can [[use the dagger|PryOffPanel]] to pry off the panel.](else:)[The panel doesn&#x27;t have a handle or anything. You&#x27;d need something sharp to open it.]
+    love-in-idleness (for love)]</tw-passagedata><tw-passagedata pid="16" name="Panel" tags="" position="850,300">(if: $have_dagger is true)[You can [[use the dagger|PryOffPanel]] to pry off the panel.](else:)[The panel doesn&#x27;t have a handle or anything. You&#x27;d need something sharp to open it.]
 
-[[Keep looking around.|Investigate Communications]]</tw-passagedata><tw-passagedata pid="17" name="PryOffPanel" tags="" position="850,300">The panel pops off. There&#x27;s a small slot labled &quot;02 feed input.&quot; There&#x27;s a button next to it labeled &quot;Incorporate into 02 feed.&quot;
+[[Keep getting ready.|Prepare]]</tw-passagedata><tw-passagedata pid="17" name="PryOffPanel" tags="" position="850,150">The panel pops off. There&#x27;s a small slot labled &quot;02 feed input.&quot; There&#x27;s a button next to it labeled &quot;Incorporate into 02 feed.&quot;
 
 It looks like you could fit something small into the slot. 
  
@@ -162,7 +188,7 @@ It looks like you could fit something small into the slot.
 (if: $flowers_held is not 0)[[[Put some flowers in the slot|FlowersInSlot]]]
 (if: $have_potion is true)[[[Pour the potion into the slot.|PotionInSlot]]]
 
-(if: $preparing is false)[[[Keep looking around.|Investigate Communications]]](if: $preparing is true)[[[You can practically smell the thing&#x27;s breath. Anything else?|Prepare]]]</tw-passagedata><tw-passagedata pid="18" name="SkullInSlot" tags="" position="1050,150">(if: $skull_attempts is 0)[You press the //large// hunk of bone against the //small// input slot. It bangs against the metal noisily, but definitely doesn&#x27;t fit in.
+[[You can practically smell the thing&#x27;s breath. Anything else?|Prepare]]</tw-passagedata><tw-passagedata pid="18" name="SkullInSlot" tags="" position="1150,0">(if: $skull_attempts is 0)[You press the //large// hunk of bone against the //small// input slot. It bangs against the metal noisily, but definitely doesn&#x27;t fit in.
 
 Seriously, the slot is like as big as your finger.](if: $skull_attempts is 1)[You try to shove the skull into the slot jaw first. The jaw is kinda pointy, after all. Maybe it can act like a wedge!
 
@@ -175,7 +201,7 @@ You succeed! In hurting your ankle, that is. The skull is still very much intact
 
 There. Now it&#x27;s blocking the input slot. That&#x27;ll stop the monster that&#x27;s trying to eat you from, uh, tampering with the oxygen feed, I guess. 
 
-Er, no ... that doesn&#x27;t make any //sense//. [[Take the handkerchief back.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="20" name="GartersInSlot" tags="" position="850,100">The garters are a fairly large garment, meant to go on your body, and the slot is a finger-width port designed for small tanks, items, or liquids. This is going to work great! 
+Er, no ... that doesn&#x27;t make any //sense//. [[Take the handkerchief back.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="20" name="GartersInSlot" tags="" position="850,0">The garters are a fairly large garment, meant to go on your body, and the slot is a finger-width port designed for small tanks, items, or liquids. This is going to work great! 
 
 You try wadding them up, and they&#x27;re still the size of a fist.
 
@@ -183,4 +209,45 @@ You try threading the garters into the slot from the toe, but they keep getting 
 
 You&#x27;re not sure what you hoped to accomplish by putting the garters into the 02 input port, but you did not accomplish it.
 
-[[Try something else.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="21" name="FlowersInSlot" tags="" position="700,0">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="22" name="PotionInSlot" tags="" position="650,150">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
+[[Try something else.|PryOffPanel]]</tw-passagedata><tw-passagedata pid="21" name="FlowersInSlot" tags="" position="695,1">
+
+[[Return|PryOffPanel]]
+
+</tw-passagedata><tw-passagedata pid="22" name="PotionInSlot" tags="" position="550,0">
+[[Return|PryOffPanel]]
+</tw-passagedata><tw-passagedata pid="23" name="Examine Dagger" tags="" position="450,1300">(if: $have_dagger is false)[Is that a //dagger// that you see before you? Why would there be a dagger in the kitchen? Maybe Yorick actually brought the monster onto the ship and was planning on trying to control it and have it kill the rest of the crew! And he planned on controlling the beast with ... an eight-inch dagger. Hmm ... 
+
+No, not especially likely. 
+
+On closer examination, it looks like it&#x27;s actually just a rather big paring knife. You recall that Yorick was going to make a vegetable stew tonight. 
+
+(link:&quot;Pick it up.&quot;)[(set: $have_dagger to true)(goto:&quot;Examine Dagger&quot;)]](if: $have_dagger is true)[//You pry the knife out of the metal countertop and it makes a terrible metal-on-metal screeching sound.//]
+[[Keep looking around.|Kitchen]]</tw-passagedata><tw-passagedata pid="24" name="Examine Skull" tags="" position="650,1300">You pick the skull up from the floor. 
+
+Alas, you knew him pretty well. 
+
+Well, not like //super// well. He&#x27;d only been working on the ship for a few months. He //seemed// super nice, though. He was an okay cook, too. 
+
+Which is really saying something, since he certainly didn&#x27;t have much in terms of real food to work with.
+
+You hang onto his skull, because who knows when you might need a friend&#x27;s skull. Well, aquaintance&#x27;s skull, really. 
+
+[[Keep looking around.|Kitchen]]
+
+(set: $have_skull to true)</tw-passagedata><tw-passagedata pid="25" name="Examine Handkerchief" tags="" position="150,900">(if: $have_handkerchief is false)[You take a closer look at the bloody handkerchief. 
+
+Oh. No, turns out it&#x27;s not actually bloody. What you thought were blood spots are actually embroidered //strawberries//. Huh. Maybe it&#x27;s symbolic. In any case, embroidery is much less exciting than blood splatters.
+
+Because, you know, having a hulking beast pounding its way through a six-inch-thick metal door is not exciting enough. 
+
+(link:&quot;Pick it up.&quot;)[(set: $have_handkerchief to true)(goto:&quot;Examine Handkerchief&quot;)]](if: $have_handkerchief is true)[//You picked up the handkerchief and stuffed it in the pocket of your jumpsuit.//]
+[[Keep looking around.|Bunks]]</tw-passagedata><tw-passagedata pid="26" name="Examine Potion" tags="" position="200,1050">The medicine cabinet has a number of items that will be of no use to you, including: bandages (adhesive and non-adhesive), tablet painkillers, some alcohol pads, sterile gloves, tape, and a cold compress. 
+
+One thing that does catch your eye is a [[small vial of the strong painkiller fentanyl|Examine Vial]]. 
+
+[[Keep looking around.|Bunks]]</tw-passagedata><tw-passagedata pid="27" name="Examine Garters" tags="" position="200,1250">[[Keep looking around.|Bunks]]</tw-passagedata><tw-passagedata pid="28" name="Examine Vial" tags="" position="50,1150">Upon closer examination of the vial, you see that fentanyl is used as a fast-acting painkiller and anesthetic in very small doses. Larger doses can lead to coma, respiritory depression, and death. 
+
+Anecdotally, it has been known to slow heart rate to dangerously low levels, to the point where a person might appear to be dead. 
+
+(link:&quot;Pick it up.&quot;)[(set: $have_potion to true)(goto:&quot;Bunks&quot;)]
+[[Keep looking around.|Bunks]]</tw-passagedata></tw-storydata>
